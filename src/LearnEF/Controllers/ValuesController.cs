@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Repositories.Helpers;
 
 namespace LearnEF.Controllers;
 
@@ -9,6 +10,13 @@ public class ValuesController : ControllerBase
     [HttpGet]
     public IEnumerable<string> Get()
     {
+        return new string[] { "created" };
+    }
+    
+    [HttpGet("populateData")]
+    public IEnumerable<string> PopulateData()
+    {
+        DbContextHelper.InsertData();
         return new string[] { "value1", "value2" };
     }
 
