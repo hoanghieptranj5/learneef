@@ -23,9 +23,10 @@ public class ValuesController : ControllerBase
     }
     
     [HttpGet("populateData")]
-    public IEnumerable<string> PopulateData()
+    public IActionResult PopulateData()
     {
-        return new string[] { "value1", "value2" };
+        var result = _dbContext.Suppliers.ToList();
+        return Ok(result);
     }
 
     // GET api/values/5

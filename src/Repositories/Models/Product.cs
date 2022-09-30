@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using MySqlX.XDevAPI;
 
 namespace Repositories.Models;
 
@@ -17,4 +18,7 @@ public class Product
     
     [Column("category")]
     public string Category { get; set; }
+    
+    [Column("supplier_ids")]
+    public string SupplierIds { get; set; }
 }
