@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Repositories;
+using Repositories.Helpers;
 
 namespace LearnEF;
 
@@ -24,6 +27,11 @@ public class Startup
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             swagger.IncludeXmlComments(xmlPath);
         });
+
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseMySQL(Configuration.GetConnectionString("LibraryDatabase")));
+
+        services.AddScoped<DbContextHelper>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

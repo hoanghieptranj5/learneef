@@ -4,19 +4,25 @@ using Publisher = Repositories.Models.Publisher;
 
 namespace Repositories.Helpers;
 
-public static class DbContextHelper
+public class DbContextHelper
 {
-    public static void InsertData()
+    public ApplicationDbContext DbContext { get; set; }
+
+    public DbContextHelper(ApplicationDbContext dbContext)
     {
-        using var context = new ApplicationDbContext();
-        context.Database.EnsureCreated();
+        DbContext = dbContext;
+    }
+
+    public void InsertData()
+    {
+        DbContext.Database.EnsureCreated();
 
         var publisher = new Publisher()
         {
             Name = "Mariner Books"
         };
 
-        context.Books.Add(new Book
+        DbContext.Books.Add(new Book
         {
             ISBN = "978-0544003415",
             Title = "The Lord of the Rings",
@@ -25,7 +31,7 @@ public static class DbContextHelper
             Pages = 1216,
             Publisher = publisher
         });
-        context.Books.Add(new Book
+        DbContext.Books.Add(new Book
         {
             ISBN = "978-0547247762",
             Title = "The Sealed Letter",
@@ -35,6 +41,6 @@ public static class DbContextHelper
             Publisher = publisher
         });
 
-        context.SaveChanges();
+        DbContext.SaveChanges();
     }
 }

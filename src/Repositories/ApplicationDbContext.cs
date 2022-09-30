@@ -9,9 +9,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<Publisher> Publishers { get; set; }
     public DbSet<Employee> Employees { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public ApplicationDbContext(DbContextOptions options) : base(options)
     {
-        optionsBuilder.UseMySQL("server=localhost;database=library;user=root;password=Protoss5195");
+        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

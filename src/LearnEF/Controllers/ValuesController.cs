@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Repositories;
 using Repositories.Helpers;
 
 namespace LearnEF.Controllers;
@@ -6,17 +7,27 @@ namespace LearnEF.Controllers;
 [Route("api/[controller]")]
 public class ValuesController : ControllerBase
 {
+    private ApplicationDbContext _dbContext;
+    private DbContextHelper _helper;
+
+    public ValuesController(ApplicationDbContext dbContext, DbContextHelper helper)
+    {
+        _dbContext = dbContext;
+        _helper = helper;
+    }
+
     // GET api/values
     [HttpGet]
     public IEnumerable<string> Get()
     {
-        return new string[] { "created" };
+        var values = _dbContext.Books.Select(x => x.Title).ToList();
+        return values;
     }
     
     [HttpGet("populateData")]
     public IEnumerable<string> PopulateData()
     {
-        DbContextHelper.InsertData();
+        _helper.InsertData();
         return new string[] { "value1", "value2" };
     }
 
