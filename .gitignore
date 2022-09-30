@@ -1,4 +1,7 @@
-﻿/src/LearnEF/bin/
+/src/LearnEF/bin/
 /src/LearnEF/obj/
 /src/Repositories/bin/
 /src/Repositories/obj/
+/src/.idea/
+/src/*/.idea/
+/*/*/.idea/
