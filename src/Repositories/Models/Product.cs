@@ -15,5 +15,6 @@ public class Product
     
     public bool Discontinued { get; set; }
     
-    public virtual Category Category { get; set; }
+    [Column("category")]
+    public string Category { get; set; }
 }

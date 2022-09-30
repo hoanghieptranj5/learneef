@@ -16,10 +16,10 @@ public class ValuesController : ControllerBase
 
     // GET api/values
     [HttpGet]
-    public IEnumerable<string> Get()
+    public IActionResult Get()
     {
-        var result = _dbContext.Products.Select(x => x.ProductName).ToList();
-        return result;
+        var result = _dbContext.Products.ToList();
+        return Ok(result);
     }
     
     [HttpGet("populateData")]
