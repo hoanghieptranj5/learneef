@@ -29,9 +29,8 @@ public class Startup
         });
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("LibraryDatabase")));
+            options.UseMySQL(Configuration.GetConnectionString("Northwind")));
 
-        services.AddScoped<DbContextHelper>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

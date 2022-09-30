@@ -7,27 +7,24 @@ namespace LearnEF.Controllers;
 [Route("api/[controller]")]
 public class ValuesController : ControllerBase
 {
-    private ApplicationDbContext _dbContext;
-    private DbContextHelper _helper;
+    private readonly ApplicationDbContext _dbContext;
 
-    public ValuesController(ApplicationDbContext dbContext, DbContextHelper helper)
+    public ValuesController(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
-        _helper = helper;
     }
 
     // GET api/values
     [HttpGet]
     public IEnumerable<string> Get()
     {
-        var values = _dbContext.Books.Select(x => x.Title).ToList();
-        return values;
+        var result = _dbContext.Products.Select(x => x.ProductName).ToList();
+        return result;
     }
     
     [HttpGet("populateData")]
     public IEnumerable<string> PopulateData()
     {
-        _helper.InsertData();
         return new string[] { "value1", "value2" };
     }
 
