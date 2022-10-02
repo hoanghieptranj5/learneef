@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Repositories;
-using Repositories.Helpers;
 
 namespace LearnEF;
 
@@ -27,9 +26,13 @@ public class Startup
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             swagger.IncludeXmlComments(xmlPath);
         });
+        
+        var serverVersion = new MySqlServerVersion(new Version(8, 0, 30));
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySQL(Configuration.GetConnectionString("Northwind")));
+        services.AddDbContext<northwindContext>(options =>
+            options.UseMySql(Configuration.GetConnectionString("Northwind"), serverVersion)
+                .LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableDetailedErrors());
 
     }
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Repositories;
-using Repositories.Helpers;
 
 namespace LearnEF.Controllers;
 
@@ -18,18 +17,13 @@ public class ValuesController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        var result = _dbContext.Products.ToList();
-        return Ok(result);
+        return Ok();
     }
     
     [HttpGet("populateData")]
     public IActionResult PopulateData()
     {
-        var result = from o in _dbContext.Orders
-            join e in _dbContext.Employees on o.EmployeeId equals e.Id
-            join c in _dbContext.Customers on o.CustomerId equals c.Id
-            select e.Company;
-        return Ok(result);
+        return Ok();
     }
 
     // GET api/values/5
