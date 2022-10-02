@@ -25,7 +25,10 @@ public class ValuesController : ControllerBase
     [HttpGet("populateData")]
     public IActionResult PopulateData()
     {
-        var result = _dbContext.Suppliers.ToList();
+        var result = from o in _dbContext.Orders
+            join e in _dbContext.Employees on o.EmployeeId equals e.Id
+            join c in _dbContext.Customers on o.CustomerId equals c.Id
+            select e.Company;
         return Ok(result);
     }
 
