@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Repositories;
+using Repositories.Models;
 
 namespace LearnEF.Controllers;
 

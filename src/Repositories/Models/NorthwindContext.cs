@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Repositories
+namespace Repositories.Models
 {
     public partial class NorthwindContext : DbContext
     {
@@ -17,8 +17,8 @@ namespace Repositories
         {
         }
 
-        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<EfmigrationsHistory> EfmigrationsHistories { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeePrivilege> EmployeePrivileges { get; set; }
         public virtual DbSet<InventoryTransaction> InventoryTransactions { get; set; }
@@ -52,23 +52,6 @@ namespace Repositories
         {
             modelBuilder.HasCharSet("latin1")
                 .UseCollation("latin1_swedish_ci");
-
-            modelBuilder.Entity<Country>(entity =>
-            {
-                entity.ToTable("countries");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.CountryName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("country_name");
-
-                entity.Property(e => e.ZipCode)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("zip_code");
-            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
@@ -150,6 +133,23 @@ namespace Repositories
                 entity.Property(e => e.ZipPostalCode)
                     .HasMaxLength(15)
                     .HasColumnName("zip_postal_code");
+            });
+
+            modelBuilder.Entity<EfmigrationsHistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__EFMigrationsHistory");
+
+                entity.HasCharSet("utf8mb4")
+                    .UseCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.MigrationId).HasMaxLength(150);
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasMaxLength(32);
             });
 
             modelBuilder.Entity<Employee>(entity =>

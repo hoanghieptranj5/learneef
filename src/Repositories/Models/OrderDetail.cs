@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Repositories
+namespace Repositories.Models
 {
     public partial class OrderDetail
     {

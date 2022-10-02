@@ -3,15 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Repositories
+namespace Repositories.Models
 {
-    public partial class Employee
+    public partial class Shipper
     {
-        public Employee()
+        public Shipper()
         {
-            EmployeePrivileges = new HashSet<EmployeePrivilege>();
             Orders = new HashSet<Order>();
-            PurchaseOrders = new HashSet<PurchaseOrder>();
         }
 
         public int Id { get; set; }
@@ -33,8 +31,6 @@ namespace Repositories
         public string Notes { get; set; }
         public byte[] Attachments { get; set; }
 
-        public virtual ICollection<EmployeePrivilege> EmployeePrivileges { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
     }
 }

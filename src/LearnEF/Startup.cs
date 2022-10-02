@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Repositories;
+using Repositories.Models;
 
 namespace LearnEF;
 

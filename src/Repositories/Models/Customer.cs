@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Repositories
+namespace Repositories.Models
 {
-    public partial class Shipper
+    public partial class Customer
     {
-        public Shipper()
+        public Customer()
         {
             Orders = new HashSet<Order>();
         }
