@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Repositories
 {
-    public partial class northwindContext : DbContext
+    public partial class NorthwindContext : DbContext
     {
-        public northwindContext()
+        public NorthwindContext()
         {
         }
 
-        public northwindContext(DbContextOptions<northwindContext> options)
+        public NorthwindContext(DbContextOptions<NorthwindContext> options)
             : base(options)
         {
         }

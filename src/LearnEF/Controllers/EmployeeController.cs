@@ -6,9 +6,9 @@ namespace LearnEF.Controllers;
 [Route("api/[controller]")]
 public class EmployeeController : ControllerBase
 {
-    private readonly northwindContext _dbContext;
+    private readonly NorthwindContext _dbContext;
 
-    public EmployeeController(northwindContext dbContext)
+    public EmployeeController(NorthwindContext dbContext)
     {
         _dbContext = dbContext;
     }
