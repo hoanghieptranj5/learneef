@@ -17,6 +17,7 @@ namespace Repositories
         {
         }
 
+        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeePrivilege> EmployeePrivileges { get; set; }
@@ -40,13 +41,34 @@ namespace Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseMySql("server=localhost;database=northwind;user=root;password=Protoss5195", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql"));
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasCharSet("latin1")
                 .UseCollation("latin1_swedish_ci");
+
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.ToTable("countries");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CountryName)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("country_name");
+
+                entity.Property(e => e.ZipCode)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .HasColumnName("zip_code");
+            });
 
             modelBuilder.Entity<Customer>(entity =>
             {
