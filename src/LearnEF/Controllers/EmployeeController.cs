@@ -14,10 +14,13 @@ public class EmployeeController : ControllerBase
     }
     
     // GET api/values
-    [HttpGet]
-    public IActionResult Get()
+    [HttpGet("{id}")]
+    public IActionResult Get(int id)
     {
-        var result = _dbContext.Employees.ToList();
-        return Ok(result);
+        var result = from order in _dbContext.Orders
+            join employee in _dbContext.Employees on order.EmployeeId equals employee.Id
+            where employee.Id == id
+            select new { employee.FirstName, order.OrderDetails };
+        return Ok(result.ToList());
     }
 }
