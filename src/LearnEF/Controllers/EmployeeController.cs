@@ -23,4 +23,14 @@ public class EmployeeController : ControllerBase
             select new { employee.FirstName, order.OrderDetails };
         return Ok(result.ToList());
     }
+    
+    // GET api/values
+    [HttpGet("{id}/order/list")]
+    public IActionResult GetCustomerOrder(int id)
+    {
+        var result = from employee in _dbContext.Employees
+            where employee.Id == id
+            select new { employee.FirstName, employee.Orders };
+        return Ok(result.ToList());
+    }
 }
