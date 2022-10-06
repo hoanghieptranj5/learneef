@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Models;
 
 namespace LearnEF.Controllers;
@@ -15,22 +16,34 @@ public class EmployeeController : ControllerBase
     
     // GET api/values
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    public async Task<IActionResult> Get(int id)
     {
         var result = from order in _dbContext.Orders
             join employee in _dbContext.Employees on order.EmployeeId equals employee.Id
             where employee.Id == id
             select new { employee.FirstName, order.OrderDetails };
-        return Ok(result.ToList());
+        return Ok(await result.ToListAsync());
     }
     
     // GET api/values
-    [HttpGet("{id}/order/list")]
-    public IActionResult GetCustomerOrder(int id)
+    [HttpGet("{id}/order")]
+    public async Task<IActionResult> GetCustomerOrder(int id)
     {
         var result = from employee in _dbContext.Employees
             where employee.Id == id
             select new { employee.FirstName, employee.Orders };
-        return Ok(result.ToList());
+        return Ok(await result.ToListAsync());
+    }
+
+    [HttpGet("{id}/something")]
+    public async Task<IActionResult> GetSomething(int id)
+    {
+        var result = await _dbContext.Employees
+            .Where(e => e.Id == id)
+            .Include(e => e.Orders)
+            .Select(x => x.Orders)
+            .ToListAsync();
+
+        return Ok(result);
     }
 }
