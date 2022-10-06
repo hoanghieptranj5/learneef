@@ -41,7 +41,8 @@ public class EmployeeController : ControllerBase
         var result = await _dbContext.Employees
             .Where(e => e.Id == id)
             .Include(e => e.Orders)
-            .Select(x => x.Orders)
+                .ThenInclude(o => o.OrderDetails)
+            .Select(x => x.Orders.Select(x => x.OrderDetails))
             .ToListAsync();
 
         return Ok(result);
