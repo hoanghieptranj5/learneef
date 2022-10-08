@@ -7,14 +7,14 @@ namespace LearnEF.DAL;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private NorthwindContext context;
-    protected DbSet<T> dbSet;
+    protected readonly DbSet<T> dbSet;
 
     protected ILogger _logger;
 
-    public GenericRepository(NorthwindContext context, ILogger logger)
+    protected GenericRepository(NorthwindContext context, ILogger logger)
     {
         this.context = context;
-        dbSet = context.Set<T>();
+        dbSet = this.context.Set<T>();
         _logger = logger;
     }
 
@@ -25,7 +25,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public virtual async Task<T> GetById(int id)
     {
-        return await dbSet.FindAsync();
+        return await dbSet.FindAsync(id);
     }
 
     public virtual async Task<bool> Add(T entity)

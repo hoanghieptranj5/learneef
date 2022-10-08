@@ -1,3 +1,4 @@
+using LearnEF.DAL.IConfiguration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Models;
@@ -8,10 +9,12 @@ namespace LearnEF.Controllers;
 public class EmployeeController : ControllerBase
 {
     private readonly NorthwindContext _dbContext;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public EmployeeController(NorthwindContext dbContext)
+    public EmployeeController(NorthwindContext dbContext, IUnitOfWork unitOfWork)
     {
         _dbContext = dbContext;
+        _unitOfWork = unitOfWork;
     }
     
     // GET api/values
@@ -45,6 +48,13 @@ public class EmployeeController : ControllerBase
             .Select(x => x.Orders.Select(x => x.OrderDetails))
             .ToListAsync();
 
+        return Ok(result);
+    }
+
+    [HttpGet("test")]
+    public async Task<IActionResult> Test()
+    {
+        var result = await _unitOfWork.Employees.GetById(1);
         return Ok(result);
     }
 }
