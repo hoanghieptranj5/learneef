@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using LearnEF.DAL.IConfiguration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Repositories.Models;
@@ -33,6 +34,8 @@ public class Startup
             options.UseMySql(Configuration.GetConnectionString("Northwind"), serverVersion)
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableDetailedErrors());
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     }
 
