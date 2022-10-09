@@ -18,9 +18,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _logger = logger;
     }
 
-    public virtual Task<IEnumerable<T>> All()
+    public virtual IQueryable<T> All()
     {
-        throw new NotImplementedException();
+        return dbSet;
     }
 
     public virtual async Task<T> GetById(int id)

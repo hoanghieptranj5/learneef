@@ -54,7 +54,10 @@ public class EmployeeController : ControllerBase
     [HttpGet("test")]
     public async Task<IActionResult> Test()
     {
-        var result = await _unitOfWork.Employees.GetById(1);
-        return Ok(result);
+        var result = from e in _unitOfWork.Employees.All()
+            join o in _unitOfWork.Orders.All() on e.Id equals o.EmployeeId 
+            select o.CustomerId;
+
+        return Ok(await result.ToListAsync());
     }
 }

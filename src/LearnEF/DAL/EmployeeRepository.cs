@@ -9,19 +9,6 @@ public class EmployeeRepository : GenericRepository<Employee>, IEmployeeReposito
     {
     }
 
-    public override async Task<IEnumerable<Employee>> All()
-    {
-        try
-        {
-            return await dbSet.ToListAsync();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "{repo} all function error", typeof(EmployeeRepository));
-            return new List<Employee>();
-        }
-    }
-
     public override async Task<bool> Delete(int id)
     {
         try
