@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using LearnEF.Logics.Abstractions;
+using LearnEF.Logics.Implementations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Repositories.DAL.UnitOfWork;
@@ -37,6 +39,7 @@ public class Startup
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        services.AddScoped<IEmployeeLogic, EmployeeLogic>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
