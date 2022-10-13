@@ -2,6 +2,7 @@
 using LearnEF.DAL.IConfiguration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Repositories.DAL.IConfiguration;
 using Repositories.Models;
 
 namespace LearnEF;

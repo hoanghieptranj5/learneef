@@ -1,6 +1,7 @@
+using Microsoft.Extensions.Logging;
 using Repositories.Models;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public class OrderRepository : GenericRepository<Order>, IOrderRepository
 {

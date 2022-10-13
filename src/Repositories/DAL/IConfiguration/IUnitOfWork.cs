@@ -1,3 +1,5 @@
+using Repositories.DAL;
+
 namespace LearnEF.DAL.IConfiguration;
 
 public interface IUnitOfWork

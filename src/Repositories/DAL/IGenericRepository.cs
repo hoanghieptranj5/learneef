@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public interface IGenericRepository<T> where T : class
 {

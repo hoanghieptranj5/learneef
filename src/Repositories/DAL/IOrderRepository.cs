@@ -1,6 +1,6 @@
 using Repositories.Models;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public interface IOrderRepository : IGenericRepository<Order>
 {

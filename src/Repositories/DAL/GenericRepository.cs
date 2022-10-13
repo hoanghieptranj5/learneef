@@ -1,8 +1,10 @@
 using System.Linq.Expressions;
+using LearnEF.DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Repositories.Models;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {

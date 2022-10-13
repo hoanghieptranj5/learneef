@@ -1,6 +1,7 @@
+using LearnEF.DAL;
 using Repositories.Models;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public interface IEmployeeRepository : IGenericRepository<Employee>
 {

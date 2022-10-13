@@ -1,7 +1,9 @@
+using LearnEF.DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Repositories.Models;
 
-namespace LearnEF.DAL;
+namespace Repositories.DAL;
 
 public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
 {
