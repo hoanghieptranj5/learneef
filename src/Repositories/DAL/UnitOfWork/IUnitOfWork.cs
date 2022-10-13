@@ -1,6 +1,7 @@
-using Repositories.DAL;
+using Repositories.DAL.EmployeeRepo;
+using Repositories.DAL.OrderRepo;
 
-namespace LearnEF.DAL.IConfiguration;
+namespace Repositories.DAL.UnitOfWork;
 
 public interface IUnitOfWork
 {

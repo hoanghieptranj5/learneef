@@ -1,6 +1,6 @@
-using LearnEF.DAL.IConfiguration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Repositories.DAL.UnitOfWork;
 using Repositories.Models;
 
 namespace LearnEF.Controllers;

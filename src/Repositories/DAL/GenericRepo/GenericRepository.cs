@@ -1,10 +1,9 @@
 using System.Linq.Expressions;
-using LearnEF.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Repositories.Models;
 
-namespace Repositories.DAL;
+namespace Repositories.DAL.GenericRepo;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {

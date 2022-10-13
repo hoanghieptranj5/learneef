@@ -1,9 +1,9 @@
-using LearnEF.DAL;
-using LearnEF.DAL.IConfiguration;
 using Microsoft.Extensions.Logging;
+using Repositories.DAL.EmployeeRepo;
+using Repositories.DAL.OrderRepo;
 using Repositories.Models;
 
-namespace Repositories.DAL.IConfiguration;
+namespace Repositories.DAL.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
