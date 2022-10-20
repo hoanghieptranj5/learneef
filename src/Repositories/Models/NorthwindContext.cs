@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Repositories.StoredProcedures.Models;
 
 #nullable disable
 
@@ -53,6 +54,14 @@ namespace Repositories.Models
             modelBuilder.HasCharSet("latin1")
                 .UseCollation("latin1_swedish_ci");
 
+            modelBuilder.Entity<CustOrderHist>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(e => e.ProductName).HasColumnName("Product_Name");
+                entity.Property(e => e.Total).HasColumnName("TOTAL");
+                entity.ToView(null);
+            });
+            
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.ToTable("customers");

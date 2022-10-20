@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Repositories.DAL.UnitOfWork;
 using Repositories.Models;
+using Repositories.StoredProcedures;
 
 namespace LearnEF;
 
@@ -40,6 +41,8 @@ public class Startup
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IEmployeeLogic, EmployeeLogic>();
+
+        services.AddScoped<CustOrderHistSP>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
